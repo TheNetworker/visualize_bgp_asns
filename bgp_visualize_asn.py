@@ -6,11 +6,9 @@ from matplotlib import pyplot as plt
 import networkx as nx
 
 
-
 class asn_visualize(object):
     def __init__(self, asn, ):
         self.asn = int(asn)
-
 
     def get_ipv4_neighbors(self):
         HOST = "api.bgpview.io"
@@ -114,7 +112,7 @@ class bgp_visualize(object):
             'JORDON': 'jo',
             'SWEDEN': 'se',
             'QATER': 'qa',
-            'IRELAND':'ie',
+            'IRELAND': 'ie',
             'Singapore': 'sg',
             'South Africa': 'za',
             'GERMANY': 'de'
@@ -125,12 +123,21 @@ class bgp_visualize(object):
 
         if self.country != "":
             self.txt = self.country
-            for asn in self.get_country_data():
+            country_data = self.get_country_data()
+            Total_ASN_Nums = len(country_data)
+            print "Total ASNs in {0} are {1}".format(self.country.upper(), Total_ASN_Nums)
+            print "================================================"
+            for asn in country_data:
+                print "adding peers for AS #{0} in {1}".format(asn, self.country.upper())
                 asn_neig_object = asn_visualize(asn=asn)
                 asn_neig_object_neighbors = asn_neig_object.get_ipv4_neighbors()
                 G.add_star(asn_neig_object_neighbors)
 
+            print "================================================"
+            print "Getting The Operators ASN in {0}".format(self.country.upper())
+
         elif self.asns:
+            Total_ASN_Nums = len(self.asns)
             self.txt = "_".join([str(x) for x in self.asns])
             for asn in self.asns:
                 asn_neig_object = asn_visualize(asn=asn)
@@ -315,6 +322,9 @@ class bgp_visualize(object):
             val_color_map[operator] = operators_colors[index]
             val_size_map[operator] = self.operator_node_size
 
+        print "================================================"
+        print "Visualizing {0} Connections Between {1} ASNs...." .format(len(G.edges()),Total_ASN_Nums)
+
         size_values = [val_size_map.get(node, (self.operator_node_size - 300)) for node in G.nodes()]
         color_values = [val_color_map.get(node, self.default_color.upper()) for node in G.nodes()]
         edge_colors = range(len(G.edges()))
@@ -324,6 +334,7 @@ class bgp_visualize(object):
         nx.draw_networkx_labels(G, pos=layout, font_size=6)
         plt.title("Visualize AS Connections for {0}".format(self.txt))
         plt.axis("off")
+        plt.subplots_adjust(left=0, right=1.0, bottom=0, top=0.97)
         plt.show()
 
         if self.save_asn:
