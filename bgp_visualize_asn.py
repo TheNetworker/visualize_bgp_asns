@@ -24,7 +24,7 @@ class asn_visualize(object):
                                       headers=headers,
 
                                       )
-        print neighbors_resp.url
+
         ipv4_peers = json.loads(neighbors_resp.content)['data']['ipv4_peers']
 
         asn_peers = []
@@ -158,8 +158,6 @@ class bgp_visualize(object):
 
             for downstream in asn_downstream:
                 val_color_map[int(downstream)] = self.downstream_color.upper()
-
-        # print val_color_map
 
         operators_colors = ['#A525D6',
                             '#009933',
