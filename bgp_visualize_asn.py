@@ -4,6 +4,7 @@ import json
 import requests
 from matplotlib import pyplot as plt
 import networkx as nx
+import os
 
 
 class asn_visualize(object):
@@ -20,7 +21,6 @@ class asn_visualize(object):
         headers = {'content-type': 'application/json'}
         neighbors_resp = requests.get(url,
                                       headers=headers,
-
                                       )
 
         ipv4_peers = json.loads(neighbors_resp.content)['data']['ipv4_peers']
@@ -74,20 +74,23 @@ class asn_visualize(object):
 
 class bgp_visualize(object):
     def __init__(self, country="", asns=[], adjacency_num=14,
-                 upstream_color='#009999',
-                 downstream_color='#ED9236',
+                 u_color='#009999',
+                 d_color='#ED9236',
                  default_color='#999999',
                  operator_node_size=800,
-                 save_asn=False
+                 save_asn="",
+                 dark = False,
                  ):
         self.country = country
         self.asns = asns
         self.adjacency_num = int(adjacency_num)
-        self.upstream_color = str(upstream_color)
-        self.downstream_color = str(downstream_color)
+        self.u_color = str(u_color)
+        self.d_color = str(d_color)
         self.default_color = str(default_color)
         self.operator_node_size = int(operator_node_size)
         self.save_asn = save_asn
+        self.dark = dark
+
 
     def get_country_data(self):
         HOST_RIPE = "stat.ripe.net/"
@@ -117,12 +120,14 @@ class bgp_visualize(object):
             'South Africa': 'za',
             'GERMANY': 'de'
         }
+
         # http://www.worldstandards.eu/other/tlds/
 
         G = nx.Graph()
 
         if self.country != "":
             self.txt = self.country
+            # TODO Add Threading for faster processing
             country_data = self.get_country_data()
             Total_ASN_Nums = len(country_data)
             print "Total ASNs in {0} are {1}".format(self.country.upper(), Total_ASN_Nums)
@@ -161,10 +166,10 @@ class bgp_visualize(object):
             asn_upstream = asn_visualize(asn=asn).get_asn_ups_and_downs(direction='upstreams')
             asn_downstream = asn_visualize(asn=asn).get_asn_ups_and_downs(direction='downstreams')
             for upstream in asn_upstream:
-                val_color_map[int(upstream)] = self.upstream_color.upper()
+                val_color_map[int(upstream)] = self.u_color.upper()
 
             for downstream in asn_downstream:
-                val_color_map[int(downstream)] = self.downstream_color.upper()
+                val_color_map[int(downstream)] = self.d_color.upper()
 
         operators_colors = ['#A525D6',
                             '#009933',
@@ -323,21 +328,40 @@ class bgp_visualize(object):
             val_size_map[operator] = self.operator_node_size
 
         print "================================================"
-        print "Visualizing {0} Connections Between {1} ASNs...." .format(len(G.edges()),Total_ASN_Nums)
+        print "Visualizing {0} Connections Between {1} ASNs....".format(len(G.edges()), Total_ASN_Nums)
+
+        fig1 = plt.figure(1)
+        color = '#000000'
+        edge_cmap = plt.cm.ocean
+        if self.dark:
+            fig1.patch.set_facecolor('black')
+            color = '#CCCCCC'
+            edge_cmap = plt.cm.ocean
+            self.default_color = '#EEEEEE'
 
         size_values = [val_size_map.get(node, (self.operator_node_size - 300)) for node in G.nodes()]
         color_values = [val_color_map.get(node, self.default_color.upper()) for node in G.nodes()]
         edge_colors = range(len(G.edges()))
         layout = nx.spring_layout(G)
         nx.draw_networkx_nodes(G, pos=layout, node_size=size_values, node_color=color_values, )
-        nx.draw_networkx_edges(G, pos=layout, alpha=0.2, width=2, edge_color=edge_colors, edge_cmap=plt.cm.ocean)
+        nx.draw_networkx_edges(G, pos=layout, alpha=0.2, width=2, edge_color=edge_colors, edge_cmap=edge_cmap)
         nx.draw_networkx_labels(G, pos=layout, font_size=6)
-        plt.title("Visualize AS Connections for {0}".format(self.txt))
         plt.axis("off")
-        plt.subplots_adjust(left=0, right=1.0, bottom=0, top=0.97)
+        fig1.subplots_adjust(left=0, right=1.0, bottom=0, top=0.94)
+        # fig1.style.use('dark_background')
+
+        plt.title("Visualize AS Connections for {0}".format(self.txt) , color=color)
+
+        if self.save_asn != "":
+            print "================================================"
+            print "Writing Data to {0} ".format(self.save_asn)
+
+            # TODO savefig doesnt read the facecolor of the plot when saving
+            plt.savefig(os.path.join(self.save_asn, '{0}_asns.png' ) .format(self.txt))
+            with open(os.path.join(self.save_asn, "{0}_asns.txt").format(self.txt), 'w') as asns:
+                if self.country != "":
+                    asns.write("\n".join(country_data))
+
         plt.show()
 
-        if self.save_asn:
-            plt.savefig("{0}_asns.png".format(self.txt))
-            with open("{0}_asns.txt".format(self.txt), 'w') as asns:
-                asns.write(self.get_country_data())
+
