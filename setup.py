@@ -5,7 +5,7 @@ setup(
     version='0.1',
     packages=['pypi_published.visualize_bgp_asn',
               ],
-    url='',
+    url='https://github.com/TheNetworker/visualize_bgp_asns',
     license='MIT License',
     author='Bassim',
     author_email='basim.alyy@gmail.com',
