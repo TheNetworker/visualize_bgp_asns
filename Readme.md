@@ -64,12 +64,12 @@ More Screenshots
 
   ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/UAE_Zoom1.png)
 
-    | ASN Number    | Operator                   |
-    |--------------:|----------------------------|
-    | 8966         :| Emirates Telecom           |
-    | 5384         :| Emirates Telecom           |
-    | 15802        :| DU                        | 
-    | 20612        :| SwissIX Internet Exchange |
+| ASN Number    | Operator                   |
+|--------------:|----------------------------|
+| 8966         :| Emirates Telecom           |
+| 5384         :| Emirates Telecom           |
+| 15802        :| DU                        | 
+| 20612        :| SwissIX Internet Exchange |
 
 
 
