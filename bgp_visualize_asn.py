@@ -68,7 +68,7 @@ class asn_visualize(object):
                 del ipv6_data[index]['name']
         except:
             pass
-
+        # TODO Support IPv6 Peers
         return ipv4_data
 
 

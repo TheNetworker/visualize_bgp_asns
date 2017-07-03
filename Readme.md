@@ -4,13 +4,15 @@ Python Module to beautifully visualize the connections between BGP Autonomous Sy
  
 ## Installation
 
-### Linux Or Mac
+### CLI
 
 ```py
 pip install bgp_visualize
 ```
 
-### Windows (using Pycharm)
+### GUI (using Pycharm)
+
+![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/Pycharm.png)
 
 ## Examples:
 
@@ -33,6 +35,17 @@ Visualize All Autonomous Systems in specific country by providing the **country 
 
 ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/KSA.png)
 
+| ASN Number     | Operator       |
+| ------------- :|:-------------:|
+| 39386          :| Saudi Telecom Communications (STC)|
+| 25019          :| Saudi Telecom Communications (STC)|
+| 25233          :| AwalNet ISP|
+| 35819         :| Mobily      | 
+| 47794         :| GO Telecom |
+| 34397         :| Cyberia Riyadh Autonomous System |
+
+
+
 ```py
 
 from bgp_visualize import bgp_visualize_asn
@@ -43,12 +56,21 @@ country.Draw()
 ```
 
 More Screenshots
--------------
+----------------
 1. **Visualize Autonomous Systems in UAE**
 
   ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/UAE_BLACK_Zoom2.png)
 
   ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/UAE_Zoom1.png)
+
+| ASN Number     | Operator       |
+| ------------- :|:-------------:|
+| 8966          :| Emirates Telecom|
+| 5384          :| Emirates Telecom|
+| 15802         :| DU      | 
+| 20612         :| SwissIX Internet Exchange |
+
+
 
 2. **Visualize Autonomous Systems in Poland**
   
@@ -57,6 +79,14 @@ More Screenshots
 3. **Visualize Autonomous Systems in Egypt**
 
   ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/EG.png)
+
+| ASN Number     | Operator       |
+| ------------- :|:-------------:|
+| 8452          :| Telecom Egypt(TEData)|
+| 24835         :| Vodafone Egypt      | 
+| 24863         :| Orange Egypt       |
+| 36992         :| Etisalat Egypt       |
+| 20928         :| Noor ISP       |
 
 
 Color Map
@@ -69,7 +99,7 @@ Color Map
 
 1. AS is **Transit or unidentified yet** ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/Transiet_or_unidentified_icon.png)
 
-1. AS is **Service Provider (Operator)** ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/operators_icons.png)
+1. AS is **Service Provider (Operator) or IXP (Internet Exchange Point) ** ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/operators_icons.png)
 
 Customizing the Graph
 ---------------------
@@ -83,6 +113,10 @@ By default, You don't need to provide any additional parameters to draw and visu
 | default_color | #999999       |
 
 
+## In-Development
+1. Support Threading for faster processing
+2. Support IPv6 peers graph
+
 ## Questions/Discussion
 
 If you find an issue with BGP_Visualize, then you can open an issue on this projects issue page here: [https://github.com/TheNetworker/visualize_bgp_asns/issues](https://github.com/TheNetworker/visualize_bgp_asns/issues)
@@ -94,4 +128,4 @@ You're welcomed to send you suggestion or ideas to [basim.alyy@gmail.com](mailto
 Bassim Aly  
 The Networker
 
-http://basimaly.wordpress.com/
+[http://basimaly.wordpress.com/](http://basimaly.wordpress.com/)
