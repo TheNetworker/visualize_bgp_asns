@@ -4,9 +4,13 @@ Python Module to beautifully visualize the connections between BGP Autonomous Sy
  
 ## Installation
 
+### Linux Or Mac
+
 ```py
 pip install bgp_visualize
 ```
+
+### Windows (using Pycharm)
 
 ## Examples:
 
@@ -57,15 +61,15 @@ More Screenshots
 
 Color Map
 -------------
-bgp_visualize module use different colors to represent the Autonomous System role in the graph. below is the list of colors and meaning of each in the generated graph
+**bgp_visualize** module use different colors to represent the Autonomous System role in the graph. below is the list of colors and meaning of each in the generated graph
 
 1. AS is **Upstream** ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/Upstream_Icon.png)
 
 1. AS is **Downstream** ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/Downstream_Icon.png)
 
-1. AS is **Transit of unidentified yet** ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/Transiet_or_unidentified_icon.png)
+1. AS is **Transit or unidentified yet** ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/Transiet_or_unidentified_icon.png)
 
-1. AS is **Service Provider (Operator) ** ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/operators_icons.png)
+1. AS is **Service Provider (Operator)** ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/operators_icons.png)
 
 Customizing the Graph
 ---------------------
