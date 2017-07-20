@@ -91,6 +91,13 @@ More Screenshots
 | 20928        :| Noor ISP                |
 
 
+
+4. **Visualize Autonomous Systems in Pakisatan
+
+  ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/Pakistan_BGP.png)
+
+  Thanks To Abdul Aziz Khan
+
 Color Map
 -------------
 **bgp_visualize** module use different colors to represent the Autonomous System role in the graph. below is the list of colors and meaning of each in the generated graph
@@ -101,7 +108,7 @@ Color Map
 
 1. AS is **Transit or unidentified yet** ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/Transiet_or_unidentified_icon.png)
 
-1. AS is **Service Provider (Operator) or IXP (Internet Exchange Point) ** ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/operators_icons.png)
+1. AS is **Service Provider (Operator) or IXP (Internet Exchange Point)** ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/operators_icons.png)
 
 Customizing the Graph
 ---------------------

@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 import networkx as nx
 import os
 
-
+# TODO Add support for the proxy
 class asn_visualize(object):
     def __init__(self, asn, ):
         self.asn = int(asn)
