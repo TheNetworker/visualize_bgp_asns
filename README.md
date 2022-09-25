@@ -92,7 +92,7 @@ More Screenshots
 
 
 
-4. **Visualize Autonomous Systems in Pakisatan
+4. **Visualize Autonomous Systems in Pakistan
 
   ![alt text](https://raw.githubusercontent.com/TheNetworker/visualize_bgp_asns/master/Pakistan_BGP.png)
 
