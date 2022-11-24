@@ -215,10 +215,10 @@ class bgp_visualize(object):
             asn_upstream = asn_visualize(asn=asn).get_asn_ups_and_downs(direction='upstreams', method="cidr")
             asn_downstream = asn_visualize(asn=asn).get_asn_ups_and_downs(direction='downstreams', method="cidr")
             for upstream in asn_upstream:
-                val_color_map[int(upstream)] = self.u_color.upper()
+                val_color_map[upstream] = self.u_color.upper()
 
             for downstream in asn_downstream:
-                val_color_map[int(downstream)] = self.d_color.upper()
+                val_color_map[downstream] = self.d_color.upper()
 
         operators_colors = ['#A525D6',
                             '#009933',
